@@ -99,37 +99,47 @@
         <div class="hero-visual" aria-hidden="true"><div class="orb"></div><div class="floating-card"><div class="small">مساحتك الخاصة · رسالة جديدة</div><div class="bubble">في حاجة حابب أقولها، وبفضّل تبقى بيني وبينك.</div><div class="bubble alt">وصلتني رسالتك، هقرأها وأرد عليك أول ما أقدر.</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:13px"><span class="small muted">خاص بين الطرفين</span><span style="color:var(--accent);font-size:12px">● مشفّر الاتصال</span></div></div></div>
       </section>
       <section class="features"><div class="feature"><strong>🔒 خصوصية</strong><span>كل عضو يرى رسائله فقط، والأدمن يرى الرسائل المرتبطة بحسابه.</span></div><div class="feature"><strong>📩 رسائل مستقلة</strong><span>كل رسالة لها حالة قراءة ورد خاص بها، وليست محادثة جماعية.</span></div><div class="feature"><strong>✨ بسيط وسريع</strong><span>واجهة مناسبة للموبايل مع الوضع الداكن والفاتح.</span></div></section>
-      <section class="panel"><div class="panel-head"><div><h2>ابدأ من هنا</h2><div class="muted small">اختار طريقة الدخول المناسبة ليك.</div></div></div><div class="form-actions"><button class="primary-btn" data-go="login">أنا أدمن</button><button class="secondary-btn" data-go="login">أنا عضو</button></div><div class="notice-box" style="margin-top:17px">تنبيه للنسخة التجريبية: إنشاء الحساب برقم الهاتف يحتاج تفعيل Phone Auth في Supabase. لو أوقفت تأكيد الهاتف لتجنب تكلفة SMS، فالموقع لن يتحقق تلقائيًا من ملكية رقم الهاتف؛ راجع README قبل الإطلاق.</div></section>`;
+      <section class="panel"><div class="panel-head"><div><h2>ابدأ من هنا</h2><div class="muted small">اختار طريقة الدخول المناسبة ليك.</div></div></div><div class="form-actions"><button class="primary-btn" data-go="login">أنا أدمن</button><button class="secondary-btn" data-go="login">أنا عضو</button></div><div class="notice-box" style="margin-top:17px">التسجيل والدخول بالبريد الإلكتروني وكلمة المرور، من غير تكلفة رسائل SMS. في إنشاء الحساب هنطلب رقم موبايل للتواصل الإداري فقط.</div></section>`;
   }
   function authView(mode='login') {
     page='auth'; authMode=mode;
     const signup=mode==='signup';
-    app.innerHTML=`<section class="panel page-enter"><div class="panel-head"><div><span class="eyebrow"><span class="dot"></span> Eb3atly account</span><h2 style="margin-top:14px">${signup?'اعمل حسابك':'أهلًا برجوعك'}</h2><div class="muted small">${signup?'ابدأ بحساب عضو، وبعدها اطلب الانضمام بكود الأدمن.':'ادخل بياناتك عشان تفتح مساحتك.'}</div></div><button class="icon-btn" data-go="home" aria-label="رجوع">←</button></div><div class="tabs"><button class="tab ${!signup?'active':''}" data-authmode="login">تسجيل الدخول</button><button class="tab ${signup?'active':''}" data-authmode="signup">حساب جديد</button></div><div id="authMessage"></div><form id="authForm"><div class="form-grid">${signup?`<div class="field full"><label for="displayName">الاسم اللي هيظهر للأدمن</label><input id="displayName" name="displayName" maxlength="60" autocomplete="nickname" placeholder="اسمك أو لقبك" required></div>`:''}<div class="field full"><label for="phone">رقم الموبايل</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx أو +20..." required><span class="form-note">الأرقام المصرية تُحوّل تلقائيًا لصيغة دولية. مثال: 01012345678.</span></div><div class="field full"><label for="password">كلمة المرور</label><input id="password" name="password" type="password" minlength="8" autocomplete="${signup?'new-password':'current-password'}" placeholder="8 أحرف على الأقل" required></div>${signup?`<div class="field full"><label for="password2">تأكيد كلمة المرور</label><input id="password2" name="password2" type="password" minlength="8" autocomplete="new-password" placeholder="اكتبها مرة ثانية" required></div>`:''}</div><div class="form-actions"><button class="primary-btn" type="submit" id="authSubmit">${signup?'إنشاء الحساب':'دخول'}</button>${!signup?`<button class="ghost-btn" type="button" data-action="forgot">نسيت كلمة المرور؟</button>`:''}</div></form><div class="hr"></div><div class="form-note">باستخدامك للموقع، لا تشارك كلمة المرور مع أي شخص. لا يوجد تحقق SMS في إعداد النسخة التجريبية، لذلك لا تستخدم كلمة مرور تستعملها في حساباتك الأخرى.</div></section>`;
+    app.innerHTML=`<section class="panel page-enter"><div class="panel-head"><div><span class="eyebrow"><span class="dot"></span> Eb3atly account</span><h2 style="margin-top:14px">${signup?'اعمل حسابك':'أهلًا برجوعك'}</h2><div class="muted small">${signup?'ابدأ بحساب عضو، وبعدها اطلب الانضمام بكود الأدمن.':'ادخل بياناتك عشان تفتح مساحتك.'}</div></div><button class="icon-btn" data-go="home" aria-label="رجوع">←</button></div><div class="tabs"><button class="tab ${!signup?'active':''}" data-authmode="login">تسجيل الدخول</button><button class="tab ${signup?'active':''}" data-authmode="signup">حساب جديد</button></div><div id="authMessage"></div><form id="authForm"><div class="form-grid">${signup?`<div class="field full"><label for="displayName">الاسم اللي هيظهر للأدمن</label><input id="displayName" name="displayName" maxlength="60" autocomplete="nickname" placeholder="اسمك أو لقبك" required></div>`:''}<div class="field full"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" required></div>${signup?`<div class="field full"><label for="phone">رقم الموبايل للتواصل</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx أو +20..." required><span class="form-note">رقم الموبايل للتواصل الإداري فقط، ولن نرسل له رسالة SMS.</span></div>`:''}<div class="field full"><label for="password">كلمة المرور</label><input id="password" name="password" type="password" minlength="8" autocomplete="${signup?'new-password':'current-password'}" placeholder="8 أحرف على الأقل" required></div>${signup?`<div class="field full"><label for="password2">تأكيد كلمة المرور</label><input id="password2" name="password2" type="password" minlength="8" autocomplete="new-password" placeholder="اكتبها مرة ثانية" required></div>`:''}</div><div class="form-actions"><button class="primary-btn" type="submit" id="authSubmit">${signup?'إنشاء الحساب':'دخول'}</button>${!signup?`<button class="ghost-btn" type="button" data-action="forgot">نسيت كلمة المرور؟</button>`:''}</div></form><div class="hr"></div><div class="form-note">استخدم بريدًا إلكترونيًا تقدر تفتحه. لو Supabase طلب تأكيد البريد، افتح رسالة التأكيد قبل تسجيل الدخول. اختار كلمة مرور قوية ولا تشاركها مع أي شخص.</div></section>`;
   }
-  function resetPrompt(){
-    $('#authMessage').innerHTML=line('استرجاع كلمة المرور للأعضاء من خلال الأدمن لم يُربط بعد في هذه النسخة. ما تبعتش كلمة مرورك في الرسائل؛ هنضيف مسار إعادة تعيين آمن قبل الإطلاق.', 'info');
+  async function resetPrompt(){
+    const email=String($('#email')?.value||'').trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      $('#authMessage').innerHTML=line('اكتب بريدك الإلكتروني في الخانة الأول، وبعدها اضغط «نسيت كلمة المرور؟».','info'); return;
+    }
+    try{
+      const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+      if(error) throw error;
+      $('#authMessage').innerHTML=line('لو البريد مسجل، هتوصلك رسالة لإعادة تعيين كلمة المرور. راجع صندوق الوارد والرسائل غير المرغوب فيها.','info');
+    }catch(e){$('#authMessage').innerHTML=line(errorText(e),'error');}
   }
   async function handleAuthSubmit(form) {
-    const fd=new FormData(form), phone=phoneE164(fd.get('phone')), password=String(fd.get('password')||'');
+    const fd=new FormData(form), email=String(fd.get('email')||'').trim().toLowerCase(), password=String(fd.get('password')||'');
     const submit=$('#authSubmit');
     const msg=$('#authMessage');
-    if(!phone){msg.innerHTML=line('اكتب رقم موبايل صحيح. لمصر: 01xxxxxxxxx أو +20xxxxxxxxxx.','error');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.innerHTML=line('اكتب بريدًا إلكترونيًا صحيحًا.','error');return;}
     if(password.length<8){msg.innerHTML=line('كلمة المرور لازم تكون 8 أحرف على الأقل.','error');return;}
     submit.disabled=true; submit.textContent='لحظة...'; msg.innerHTML='';
     try{
       if(authMode==='signup'){
         const displayName=String(fd.get('displayName')||'').trim();
+        const phone=phoneE164(fd.get('phone'));
         if(!displayName){msg.innerHTML=line('اكتب الاسم اللي هيظهر للأدمن.','error');return;}
+        if(!phone){msg.innerHTML=line('اكتب رقم موبايل صحيح. لمصر: 01xxxxxxxxx أو +20xxxxxxxxxx.','error');return;}
         if(password!==String(fd.get('password2')||'')){msg.innerHTML=line('كلمتا المرور مش متطابقتين.','error');return;}
-        const {data,error}=await client.auth.signUp({phone,password,options:{data:{display_name:displayName}}});
+        const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:displayName,phone_e164:phone}}});
         if(error) throw error;
         if(!data.session){
-          msg.innerHTML=line('تم إنشاء الحساب، لكنه ينتظر تأكيد رقم الهاتف. راجع إعداد Confirm phone ومزوّد SMS في Supabase حسب README.','info');
+          msg.innerHTML=line('تم إنشاء الحساب. افتح رسالة التأكيد المرسلة إلى بريدك الإلكتروني، ثم ارجع وسجّل الدخول. لو لم تصلك الرسالة، راجع مجلد الرسائل غير المرغوب فيها.','info');
           return;
         }
         toast('حسابك اتعمل بنجاح. الخطوة التالية طلب الانضمام بكود الأدمن.','ok');
       } else {
-        const {error}=await client.auth.signInWithPassword({phone,password});
+        const {error}=await client.auth.signInWithPassword({email,password});
         if(error) throw error;
         toast('تم تسجيل الدخول.','ok');
       }
